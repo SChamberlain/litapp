@@ -1,5 +1,6 @@
 require(shiny)
 
+options(dplakey = "551fb8e0b337a8ded836b8ad7849e042")
 options(xtable.type = "html")
 options(xtable.include.rownames = FALSE)
 options(xtable.html.table.attributes = "class=table")
