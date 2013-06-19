@@ -1,0 +1,57 @@
+<style>
+  .row-fluid .span1 { width: 1.982906%; }
+    
+  #crossref_free{ 
+    height:600px;
+    overflow:auto; 
+  }
+</style>
+
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
+<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+
+<div class="alert">
+  <a href="#" class="close" data-dismiss="alert">&times;</a>
+  <strong>Warning!</strong> CrossRef freeform search requires at least 3 words per search string. E.g. try this:<br>
+  Priem 2012 altmetrics,Piwowar sharing data PLOS one,Boettiger 2012 ecology
+</div>
+
+<div class="span1" style="float: right;">
+    <a href="#crossreffreecodeModal" role="btn" class="btn btn-inverse" data-toggle="modal" style="float:right;"><i class="icon-code icon-white"></i></a>
+    <a href="#crossreffreeModal" role="btn" class="btn btn-info" data-toggle="modal" style="float:right;"><i class="icon-question-sign icon-white"></i></a>
+</div>
+
+<!-- Get Code Modal -->
+<div id="crossreffreecodeModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="crossreffreecodeModal" aria-hidden="true">
+     <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3 id="crossreffreecodeModal">Run the code locally</h3>
+     </div>
+
+     <div class="modal-body">
+          <!-- <pre class="pre-scrollable"> -->
+          <pre class="prettyprint">
+install.packages("rplos")
+require(rplos)
+species <- c("species1","species2","species3")
+dat <- llply(species, function(x) searchplos(x, fields="id,journal,title", limit = input$paperlim)[,-4])
+names(dat) <- species
+dat <- ldply(dat)
+names(dat) <- c("Species","Journal","Title")
+dat
+          </pre>
+     </div>
+</div>
+
+<!-- Modal -->
+<div id="crossreffreeModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="crossreffreeModal" aria-hidden="true">
+     <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3 id="crossreffreeModal">Info</h3>
+     </div>
+
+     <div class="modal-body">
+          Taxon names searched against the <a href="http://api.plos.org/" target="_blank">PLoS search API</a><br><br>
+          Links to crossreffree via their DOIs can be viewed in <a href="http://macrodocs.org/" target="_blank">Macrodocs</a>
+     </div>
+</div>
